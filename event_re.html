@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event_re</title>
+
+    <style>
+        .box_wrap{
+            height: 300px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box{
+            width: 30%;
+            height: 100%;
+            background-color: beige;
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* =============== */
+        .on{
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>    
+
+    <div class="box_wrap">
+        <div class="box box_1">1</div>
+        <div class="box box_2">2</div>
+        <div class="box box_3">3</div>
+    </div>
+    <script>
+        // 프레임워크(Framework)
+        // = 뼈대, 골조
+        // 복잡한 문제를 해결
+
+        // 짜여진 프레임 워크 규칙에 맞게 프로그램을 짬(=/=라이브러리)
+
+
+        // 이벤트 위임
+        // 각 박스를 클릭했을때 클래스가 있다면 넣고 없다면 빼는
+        // const boxEl_1 = document.querySelector('.box_1')
+        // const boxEl_2 = document.querySelector('.box_2')
+        // const boxEl_3 = document.querySelector('.box_3')
+
+        // const handleBox_1 = () => {
+        //     boxEl_1.classList.toggle('on')
+        // }
+
+        // const handleBox_2 = () => {
+        //     boxEl_2.classList.toggle('on')
+        // }
+
+        // const handleBox_3 = () => {
+        //     boxEl_3.classList.toggle('on')
+        // }
+        // boxEl_1.addEventListener('click', handleBox_1)
+        // boxEl_2.addEventListener('click', handleBox_2)
+        // boxEl_3.addEventListener('click', handleBox_3)
+
+        // 리팩토링_1
+        // 화살표 함수는 값이 하나면 중괄호 빼고 한줄로 가능
+        // const handleBox_1 = () => boxEl_1.classList.toggle('on')
+
+        // 리팩토링_2
+        // for문으로 => 쿼리셀렉터올 사용 => 배열로 반환
+        // const boxAll = document.querySelectorAll('.box')
+        
+        // for(let i = 0; i < boxAll.length; i++){
+        //     boxAll[i].addEventListener('click', () => {
+        //         boxAll[i].classList.toggle('on')
+        //     })
+        // }
+
+        // 리팩토링_3
+        // 이벤트 위임 - 부모에게 이벤트를 걸기
+        const boxWrap = document.querySelector('.box_wrap')
+
+        const handleClick = (e) => {
+            // console.log(e.target)
+            // e.target.classList.toggle('on')
+            // 클릭했을때 박스 클래스일때만 이벤트 적용
+            if(e.target.classList.contains('box')){
+                e.target.classList.toggle('on')
+            }
+            // console.log(e.target.classList.contains('box'))
+            // classList.contains('name') => 클래스 명이 있는지 없는지 참 거짓으로 결과값 가져옴(Boolean)
+
+            // else 없으면 거짓일 경우 아무것도 실행 안 함
+        }
+
+        boxWrap.addEventListener('click', handleClick)
+
+
+
+    </script>
+
+</body>
+</html>
